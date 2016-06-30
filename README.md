@@ -1,4 +1,4 @@
 #RNN-Theano
 
 ##classification
-使用RNN或LSTM进行文本分类
+浣跨敤RNN鎴朙STM杩涜鏂囨湰鍒嗙被

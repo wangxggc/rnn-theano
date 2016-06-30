@@ -6,10 +6,10 @@ from utils import *
 from models import * 
 
 MODEL       = LSTMMLstm
-DATA_DIR    = "1500W"
-DATA_TRAIN  = "./data/" + DATA_DIR + "/train.gb18030"
-DATA_VALID  = "./data/" + DATA_DIR + "/valid.gb18030"
-DATA_TEST   = "./data/" + DATA_DIR + "/test.gb18030"
+DATA_DIR    = ""
+DATA_TRAIN  = DATA_DIR + "/train.gb18030"
+DATA_VALID  = DATA_DIR + "/valid.gb18030"
+DATA_TEST   = DATA_DIR + "/test.gb18030"
 DATA_DIC    = "./data/dic_10000.gb18030"
 
 
@@ -21,8 +21,10 @@ g_decay_delt    = 0.02
 g_batch_size    = 2048
 g_sen_len       = 20
 g_hidden_dim    = 300
-g_class_weights = dict([(x.split(",")[0], int(float(x.split(",")[1].strip()))) 
-                            for x in open("./data/" + DATA_DIR + "/weights")])
+g_class_weights = {}
+if os.path.exist(DATA_DIR + "/weights"):
+    g_class_weights = dict([(x.split(",")[0], int(float(x.split(",")[1].strip()))) 
+                            for x in open(DATA_DIR + "/weights")])
 
 g_model, g_train, g_valid, g_test = buildModel(MODEL, DATA_TRAIN, DATA_VALID, DATA_TEST, DATA_DIC,
                                             learning_rate=g_learning_rate, 

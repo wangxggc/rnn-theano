@@ -14,11 +14,11 @@ from models import *
 #MODEL      = LSTM
 
 MODEL      = LSTMMLstm
-DATA_DIR   = "yuer_doctor_other"
-DATA_TRAIN = "./data/category_classify/" + DATA_DIR + "/train.gb18030"
-DATA_VALID = "./data/category_classify/" + DATA_DIR + "/validate.gb18030"
-DATA_TEST  = "./data/category_classify/" + DATA_DIR + "/test.gb18030"
-DATA_DIC   = "./data/category_classify/" + DATA_DIR + "/dic_10000.gb18030"
+DATA_DIR   = ""
+DATA_TRAIN = DATA_DIR + "/train.gb18030"
+DATA_VALID = DATA_DIR + "/validate.gb18030"
+DATA_TEST  = DATA_DIR + "/test.gb18030"
+DATA_DIC   = DATA_DIR + "/dic_10000.gb18030"
 NEPOCH       = 10
 learningRate = 0.001
 decay        = 0.95

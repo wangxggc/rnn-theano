@@ -13,7 +13,7 @@ MLSTM的论文为：[Learning Natural Language Inference with LSTM](http://arxiv
 
 **使用方法说明：**
 	
-	THEANO_FLAGS='device=gpu3,cxx=/usr/bin/g++,floatX=float32,force_device=True,cuda.root=/usr/local/cuda' python train.py
+	THEANO_FLAGS='device=gpu,cxx=/usr/bin/g++,floatX=float32,force_device=True,cuda.root=/usr/local/cuda' python train.py
 
 **配置，打开train.py**
 
@@ -34,12 +34,12 @@ MLSTM的论文为：[Learning Natural Language Inference with LSTM](http://arxiv
 
 	输入数据为四个文件，数据格式为有tab隔开的两句话,以及句子的label，如：句子1\t句子2\tlabel分类时，可以将一句话重复两次，即句子1\t句子1\tlabel
 
-	DATA_TRAIN：为训练文件，
+	DATA_TRAIN：	为训练文件，
 	DATA_VALID：	验证集，格式同DATA_TRAIN
 	DATA_TEST：	测试集，格式同DATA_TRAIN
-	DATA_DIC：	词典。
+	DATA_DIC：		词典
 	NEPOCH：		迭代次数
-	learngingRate：	学习率
+	learngingRate：学习率
 	decay：		RmsProp的decay
 	batchSize：	随即梯度下降的batch大小
 	senLen：		RNN的递归层数
@@ -50,7 +50,7 @@ MLSTM的论文为：[Learning Natural Language Inference with LSTM](http://arxiv
 
 **使用方法**
 
-	THEANO_FLAGS='device=gpu3,cxx=/usr/bin/g++,floatX=float32,force_device=True,cuda.root=/usr/local/cuda' python train.py
+	THEANO_FLAGS='device=gpu,cxx=/usr/bin/g++,floatX=float32,force_device=True,cuda.root=/usr/local/cuda' python predict.py
 
 **配置，打开predict.py**
 

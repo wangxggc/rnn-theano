@@ -1,5 +1,5 @@
 # rnn-theano
-使用Theano实现的一些RNN代码，包括最基本的RNN，LSTM，以及部分最新论文MLSTM等
+使用Theano实现的一些RNN代码，包括最基本的RNN，LSTM，以及部分最新论文MLSTM等，仅供学习交流使用。
 
 代码风格仿照：https://github.com/dennybritz/rnn-tutorial-gru-lstm
 

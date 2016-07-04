@@ -8,7 +8,6 @@ from datetime import datetime
 
 CHARSET = 'gb18030'
 DEBUG   = True
-MACOS   = False
 
 def DEBUG__(INFO, LINE=sys._getframe().f_lineno):
     if DEBUG:

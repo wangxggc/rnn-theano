@@ -95,8 +95,8 @@ def generate_response_all(model, argv):
 
 def embdding_sentence(model, argv):
     model_file = argv[2]
-    sentences_file = argv[3]
-    dic_file = argv[4]
+    dic_file = argv[3]
+    sentences_file = argv[4]
     embdding_save_file = argv[5]
 
     # load paramenters
@@ -127,7 +127,7 @@ def print_usage():
     print "\tpython train.py -g model_file dic_file post_data_file response_save_file"
     print
     print "For Embdding Sentence:"
-    print "\tpython train.py -e model_file sentences_file dic_file embdding_save_file"
+    print "\tpython train.py -e model_file dic_file sentences_file embdding_save_file"
     exit(0)
 
 if __name__ == "__main__":

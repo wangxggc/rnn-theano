@@ -25,7 +25,7 @@ def format_batch_data(sents_one, sents_two, sen_len):
     
         np_m_sents_one[0:lens1, idx] = 1.
         np_m_sents_two[0:lens2, idx] = 1.
-        np_m_target[0:lens2, idx] = 1.
+        np_m_target[:, idx] = 1.
 
         s1 = s1 + [PAD_ID] * sen_len
         s2 = [BEG_ID] + s2 + [PAD_ID] * sen_len

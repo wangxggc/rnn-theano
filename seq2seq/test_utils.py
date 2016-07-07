@@ -1,9 +1,5 @@
-import sys, os
-from train_utils import *
-from setting import *
-import numpy as np
-import theano
 from train import *
+
 
 def test_train_model(model):
     train_data_file1 = "datas/post.dat"
@@ -16,6 +12,7 @@ def test_train_model(model):
 
     train_model(model, [ sents_one, sents_two ])
     model.save_model(model_save_file)
+
 
 def test_generation(model):
     model_file = "datas/dialog.model.npz"
@@ -37,6 +34,7 @@ def test_generation(model):
     sout = open(reps_file)
     for post, response in zip(post[0:100], responses):
         sout.write(post + "\t" + "".join(response[ 1 ]) + "\n")
+
 
 def test_embdding(model):
     model_file = "datas/dialog.model.npz"

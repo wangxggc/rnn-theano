@@ -26,9 +26,11 @@ def train_model(model, argv):
     num_batches = len(train_data[0]) / g_batch_size + 1
     
     for epoch in range(g_n_epoch):
+        loss_begin, loss_end = [], []
+        
         for num_batch in range(num_batches):
             # get batch indices
-            batch_idxs = get_min_batch_idxs(len(train_data[0]), num_batch, g_batch_size, False)
+            batch_idxs = get_min_batch_idxs(len(train_data[0]), num_batch, g_batch_size, True)
             # format data into numpy matrix
             sents_one = [train_data[0][idx] for idx in batch_idxs]
             sents_two = [train_data[1][idx] for idx in batch_idxs]
@@ -38,9 +40,17 @@ def train_model(model, argv):
             loss1 = model.loss(inputs, masks)
             model.sgd_step(inputs, masks, g_learning_rate, g_decay)
             loss2 = model.loss(inputs, masks)
+
+            loss_begin.append(loss1)
+            loss_end.append(loss2)
+
+            loss1 = sum(loss_begin) / len(loss_begin)
+            loss2 = sum(loss_end) / len(loss_end)
+
             print "Epoch(%d/%d), Batch(%d/%d), %f - %f = %f" % (epoch, g_n_epoch, num_batch, num_batches, loss1, loss2, loss1 - loss2)
         if epoch % g_save_epoch ==  g_save_epoch - 1:
             model.save_model(model_save_file + "." + str(1001 + epoch)[1:] + ".npz")
+        print  
     
     model.save_model(model_save_file + ".final.npz")
     return model
@@ -48,11 +58,13 @@ def train_model(model, argv):
 
 def generate_response(model, input, dic):
     nh, nc = model.encode(input)
+	# nh = model.encode(input) # for RNN
     idx = 0
     response = [BEG_ID]
     text = []
     while idx < g_max_length:
         [nh, nc, nx, prob] = model.generate(nh, nc, response[-1])
+		# [nh, nx, prob] = model.generate(nh, response[-1]) # for RNN
         if nx == PAD_ID:
             break
         else:
@@ -65,7 +77,7 @@ def generate_response(model, input, dic):
     for i in input:
         input_text += str(dic[i]) + " "
     response_text = ""
-    for r in response:
+    for r in response[1:]:
         response_text += str(dic[r]) + " "
 
     return input_text, response_text
@@ -80,7 +92,7 @@ def generate_response_all(model, argv):
     # load paramenters
     model.load_model(model_file)
     posts = load_data(post_data_file, dic_file)
-    dic = ["<P>", "<B>"] + [x.strip() for x in open(dic_file)]
+    dic = DIC_HEAD + [x.strip() for x in open(dic_file)]
 
     responses = []
     for post in posts:
@@ -107,6 +119,7 @@ def embdding_sentence(model, argv):
         nh = np.zeros(model.hidden_dim).astype(theano.config.floatX)
         if len(post) > 0:
             nh, _ = model.encode(post)
+			# nh = model.encode(post)
         embddings.append(nh)
 
     sout = open(embdding_save_file, "w")

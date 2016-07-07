@@ -40,7 +40,7 @@ def format_batch_data(sents_one, sents_two, sen_len):
 def load_data(corpus_file, dic_file, shuffle=False):
     # indices to words
     i2w = [w.strip() for w in codecs.open(dic_file, "r", g_charset) if w.strip()!=""]
-    i2w = [BEG, PAD] + i2w
+    i2w = [PAD, BEG] + i2w
     # words to indices
     w2i = dict([(w, i) for i, w in enumerate(i2w) if w.strip()!=""]) #for python 2.6
     # datas

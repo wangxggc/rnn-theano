@@ -56,7 +56,7 @@ def train_model(model, argv):
             loss1 = sum(loss_begin) / len(loss_begin)
             loss2 = sum(loss_end) / len(loss_end)
 
-            info = "Batch(%d/%d), Loss: %f - %f = %f" % (num_batch, num_batches - 1, loss1, loss2, loss1 - loss2)
+            info = "Epoch(%d/%d), Batch(%d/%d), Loss: %f - %f = %f" % (epoch, g_n_epoch, num_batch, num_batches - 1, loss1, loss2, loss1 - loss2)
             print info
 
             num_batches_seen += 1

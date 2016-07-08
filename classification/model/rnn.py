@@ -3,7 +3,7 @@ import theano as theano
 import theano.tensor as T
 from model_utils import *
 
-class LSTM:
+class RNN:
     
     def __init__(self, class_dim, word_dim, hidden_dim, sen_len, batch_size, truncate=-1):
         # Assign instance variables
@@ -50,8 +50,8 @@ class LSTM:
         # Embdding words
         _E1 = params["E"].dot(params["W"][0]) + params["B"][0]
         _E2 = params["E"].dot(params["W"][1]) + params["B"][1]
-        statex1 = _E1[x1.flatten(), :].reshape([x1.shape[0], x1.shape[1], hidden_dim * 4])
-        statex2 = _E2[x2.flatten(), :].reshape([x2.shape[0], x2.shape[1], hidden_dim * 4])
+        statex1 = _E1[x1.flatten(), :].reshape([x1.shape[0], x1.shape[1], hidden_dim])
+        statex2 = _E2[x2.flatten(), :].reshape([x2.shape[0], x2.shape[1], hidden_dim])
         
         def rnn_cell(x, mx, ph, Wh):
             h = T.tanh(ph.dot(Wh) + x)

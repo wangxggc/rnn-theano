@@ -16,8 +16,8 @@ class LSTM:
         params = {}
         # Initialize the network parameters
         params["E"] = np.random.uniform(-np.sqrt(1./hidden_dim), np.sqrt(1./hidden_dim), (word_dim, hidden_dim))        #Ebdding Matirx
-        params["W"] = np.random.uniform(-np.sqrt(1./hidden_dim), np.sqrt(1./hidden_dim), (4, hidden_dim, hidden_dim)) 	#W[0-1].dot(x), W[2-3].(i,f,o,c)
-        params["B"] = np.random.uniform(-np.sqrt(1./hidden_dim), np.sqrt(1./hidden_dim), (2, hidden_dim))           	#B[0-1] for W[0-1]
+        params["W"] = np.random.uniform(-np.sqrt(1./hidden_dim), np.sqrt(1./hidden_dim), (4, hidden_dim, hidden_dim))     #W[0-1].dot(x), W[2-3].(i,f,o,c)
+        params["B"] = np.random.uniform(-np.sqrt(1./hidden_dim), np.sqrt(1./hidden_dim), (2, hidden_dim))               #B[0-1] for W[0-1]
         params["lrW"] = np.random.uniform(-np.sqrt(1./hidden_dim), np.sqrt(1./hidden_dim), (2, hidden_dim, class_dim))  #LR W and b
         params["lrb"] = np.random.uniform(-np.sqrt(1./hidden_dim), np.sqrt(1./hidden_dim), (class_dim))
         
@@ -55,7 +55,7 @@ class LSTM:
         
         def rnn_cell(x, mx, ph, Wh):
             h = T.tanh(ph.dot(Wh) + x)
-			h = mx[:, None] * h + (1-mx[:, None]) * ph
+            h = mx[:, None] * h + (1-mx[:, None]) * ph
             return [h] 
             
         [h1, c1], updates = theano.scan(

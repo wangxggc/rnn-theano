@@ -58,13 +58,13 @@ def train_model(model, argv):
 
 def generate_response(model, input, dic):
     nh, nc = model.encode(input)
-	# nh = model.encode(input) # for RNN
+    # nh = model.encode(input) # for RNN
     idx = 0
     response = [BEG_ID]
     text = []
     while idx < g_max_length:
         [nh, nc, nx, prob] = model.generate(nh, nc, response[-1])
-		# [nh, nx, prob] = model.generate(nh, response[-1]) # for RNN
+        # [nh, nx, prob] = model.generate(nh, response[-1]) # for RNN
         if nx == PAD_ID:
             break
         else:
@@ -119,7 +119,7 @@ def embdding_sentence(model, argv):
         nh = np.zeros(model.hidden_dim).astype(theano.config.floatX)
         if len(post) > 0:
             nh, _ = model.encode(post)
-			# nh = model.encode(post)
+            # nh = model.encode(post)
         embddings.append(nh)
 
     sout = open(embdding_save_file, "w")

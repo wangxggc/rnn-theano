@@ -50,7 +50,7 @@ class LSTM:
 
         def rnn_cell(x, mx, ph, Wh):
             h = T.tanh(ph.dot(Wh) + x)
-			h = mx[:, None] * h + (1-mx[:, None]) * ph
+            h = mx[:, None] * h + (1-mx[:, None]) * ph
             return [h]  # size = sample * hidden : 3 * 4
 
         # encoding first sentence
@@ -103,8 +103,6 @@ class LSTM:
 
         def rnn_generation_cell(x, ph, Ex, Wx, Wh, bx):
             h = Ex[x, :].dot(Wx) + ph.dot(Wh) + bx
-            h = mx[:, None] * h + (1-mx[:, None]) * ph
-			
             return [h]
 
         [e_h], updates = theano.scan(

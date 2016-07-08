@@ -177,10 +177,10 @@ class LSTMMLstm:
             h = o * T.tanh(c)
 
             # WbyW Attention
-            mt = T.tanh(H.dot(AW[0]) + (h.dot(AW[1]) + pr.dot(AW[ 2 ])))  # sen_len * hidden
+            mt = T.tanh(H.dot(AW[0]) + (h.dot(AW[1])))  # sen_len * hidden
             a = T.nnet.softmax(mt.dot(Aw).T)  # sen_len
 
-            r = H.T.dot(a) + T.tanh(pr.dot(AW[3])) # hidden
+            r = H.T.dot(a) # hidden
 
             return [ h, c, r, a ]
 

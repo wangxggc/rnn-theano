@@ -121,7 +121,7 @@ def embdding_sentence(model, argv):
         nh = np.zeros(model.hidden_dim).astype(theano.config.floatX)
         if len(post) > 0:
             nh, _ = model.encode(post)
-            # nh = model.encode(post)
+            # nh = model.encode(post) # for RNN
         embddings.append(nh)
 
     sout = open(embdding_save_file, "w")

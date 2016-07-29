@@ -57,7 +57,8 @@ def train_model(model, argv):
 
 
 def generate_response(model, input, dic):
-    nh, nc = model.encode(input)
+    nh, nc = model.encode(input) # for LSTM and Attention LSTM
+    nr, nc = None, None # for Attention LSTM
     # nh = model.encode(input) # for RNN
     idx = 0
     response = [BEG_ID]
@@ -65,6 +66,7 @@ def generate_response(model, input, dic):
     while idx < g_max_length:
         [nh, nc, nx, prob] = model.generate(nh, nc, response[-1])
         # [nh, nx, prob] = model.generate(nh, response[-1]) # for RNN
+        # [nh, nc, nr, na, nx, prob] = model.generate(nh, nc, nr)
         if nx == PAD_ID:
             break
         else:

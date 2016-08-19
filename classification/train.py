@@ -87,7 +87,7 @@ def predict(model, argv):
     # result save
     sout = open(result_save_file, "w")
 
-    for num_batch in range(len(predict_data[0] / g_batch_size) + 1):
+    for num_batch in range(len(predict_data[0]) / g_batch_size + 1):
         batch_idxs, batch_size = get_min_batch_idxs(len(predict_data[0]), num_batch, g_batch_size, False)
         batch_x1 = [predict_data[0][idx] for idx in batch_idxs]
         batch_x2 = [predict_data[1][idx] for idx in batch_idxs]

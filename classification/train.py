@@ -98,8 +98,8 @@ def predict(model, argv):
         _x1, _x2, _mask_x1, _mask_x2, _y, _yc = format_batch_data(batch_x1, batch_x2, batch_y, batch_yc, g_sen_len)
 
         # predictions
-        _p = model.predictions(model, _x1, _x2, _mask_x1, _mask_x2)
-        _s = model.weights(model, _x1, _x2, _mask_x1, _mask_x2)
+        _p = model.predictions(_x1, _x2, _mask_x1, _mask_x2)
+        _s = model.weights(_x1, _x2, _mask_x1, _mask_x2)
 
         print "\rpredicted, ", num_batch * g_batch_size + batch_size,
 

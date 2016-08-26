@@ -174,7 +174,7 @@ class LSTMMLstm:
             W = self.params["W"].get_value(),
             B = self.params["B"].get_value(),
             AttenW = self.params["AttenW"].get_value(),
-            Attenw = self.params["BAttenw"].get_value(),
+            Attenw = self.params["Attenw"].get_value(),
             MLstmW = self.params["MLstmW"].get_value,
             MLstmV = self.params["MLstmV"].get_value,
             MLstmb = self.params["MLstmb"].get_value,

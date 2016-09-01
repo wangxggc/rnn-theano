@@ -175,9 +175,9 @@ class LSTMMLstm:
             B = self.params["B"].get_value(),
             AttenW = self.params["AttenW"].get_value(),
             Attenw = self.params["Attenw"].get_value(),
-            MLstmW = self.params["MLstmW"].get_value,
-            MLstmV = self.params["MLstmV"].get_value,
-            MLstmb = self.params["MLstmb"].get_value,
+            MLstmW = self.params["MLstmW"].get_value(),
+            MLstmV = self.params["MLstmV"].get_value(),
+            MLstmb = self.params["MLstmb"].get_value(),
             lrW = self.params["V"].get_value(),
             lrb = self.params["b"].get_value())
         print "Saved WbyW LSTM' parameters to %s." % outfile

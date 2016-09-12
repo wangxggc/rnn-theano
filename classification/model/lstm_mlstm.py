@@ -184,7 +184,7 @@ class LSTMMLstm:
 
     def load_model(self, path):
         npzfile = np.load(path)
-        print "Loading model from %s.\nParamenters: \n\t|class_dim=%d \n\t|hidden_dim=%d \n\t|word_dim=%d" % (path, npzfile["class_dim"], npzfile["hidden_dim"], npzfile["word_dim"])
+        print "Loading model from %s.\nParamenters: \n\t|class_dim=%d \n\t|hidden_dim=%d" % (path, npzfile["class_dim"], npzfile["hidden_dim"])
         sys.stdout.flush()
         self.params["E"].set_value(npzfile["E"])
         self.params["W"].set_value(npzfile["W"])

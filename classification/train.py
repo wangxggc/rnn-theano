@@ -126,7 +126,7 @@ def print_usage():
     print "\tdata_class_weights, class weights, format: \"label,weights,count,class_name\""
     print
     print "For prediction:"
-    print "\tpython train.py -p model_file dic_file predict_data_file result_save_file"
+    print "\tpython train.py -p model_file predict_data_file dic_file result_save_file"
     print
     exit(0)
 

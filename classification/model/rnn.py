@@ -58,14 +58,14 @@ class RNN:
             h = mx[:, None] * h + (1-mx[:, None]) * ph
             return [h] 
             
-        [h1, c1], updates = theano.scan(
+        [h1], updates = theano.scan(
             fn=rnn_cell,
             sequences=[statex1, x1_mask],
             truncate_gradient=self.truncate,
             outputs_info=[dict(initial=T.zeros([self.batch_size, self.hidden_dim]))],
             non_sequences=params["W"][2])
         
-        [h2, c2], updates = theano.scan(
+        [h2], updates = theano.scan(
             fn=rnn_cell,
             sequences=[statex2, x2_mask],
             truncate_gradient=self.truncate,

@@ -4,11 +4,13 @@
 
 `old_version_1`中得仍然可以使用（Seq2Seq在这里，没有BimSearch），
 
-`new_version_with_cnn_and_rnn_for_classification`是一个最基本的CNN和RNN的分类实现。
+`classification_with_cnn_and_rnn`是一个最基本的CNN和RNN的分类实现。
 
 其中，CNN是Kim得Sentence CNN，RNN是LSTM-Based
 
 ## CNN参数说明
+
+`vim cnn.py`
 
     params = {
         "output_dim":2,         # 输出维度，即类别数量
@@ -30,6 +32,8 @@
     }
 
 ## RNN参数说明
+
+`vim rnn.py`
 
     params = {
         "output_dim":2,           # 输出维度，即类别数量
@@ -59,8 +63,13 @@
 使用RNN：`python rnn.py -t train_data.txt valid_data.txt dic.txt model_save_dir`
 
 
-##测试方法
+## 测试方法
 
 使用CNN: `python cnn.py -p model_file dic.txt predict_data.txt result.txt`
 
 使用RNN: `python rnn.py -p model_file dic.txt predict_data.txt result.txt`
+
+
+## 补充说明
+
+所有的Layer实现都在basic/layers.py中其中包含了两种AttentionBase的Decoder，但没有实现基于这两个Decoder的Seq2Seq方法，因为之前写的代码找不到了。

@@ -142,6 +142,8 @@ class PredictLayer:
             # int * float32 = float64 which pulls things off the gpu
             input = input * T.cast(mask, theano.config.floatX)
         elif drop and not train:
+            # when dropout is used for training process,
+            # input should be timed with (1-dropratio), except bais
             scale *= 0.5
 
         weights = input.dot(params[id + "full_w"]) * scale + params[id + "full_b"]

@@ -125,7 +125,7 @@ class CNN:
             updates=updates, on_unused_input='ignore')
 
         # for test
-        weights, predictions = self.predict_layer.predict(final_hidden_states, drop=False, train=False)
+        weights, predictions = self.predict_layer.predict(final_hidden_states, drop=self.drop, train=False)
         self.weights = theano.function([x, x_mask], weights, on_unused_input='ignore')
         self.predictions = theano.function([x, x_mask], predictions, on_unused_input='ignore')
 
